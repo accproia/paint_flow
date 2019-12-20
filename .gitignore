@@ -2,3 +2,4 @@
 **/*.rs.bk
 Cargo.toml
 Cargo.lock
+output
