@@ -11,10 +11,9 @@ const IMAGE_HEIGHT: u32 = 100;
 fn initialize_image_data() -> Vec<u8> {
     let mut img_data: Vec<u8> = Vec::new();
     img_data.resize_with((IMAGE_WIDTH * IMAGE_HEIGHT) as usize * png::ColorType::RGBA.samples(), Default::default);
-    let mut iter = TupleIteratable::new(&mut img_data);
-    for (r, g, b, a) in &mut iter {
+    for (r, g, b, a) in tuple_iteratable!(&mut img_data) {
         *r = 255u8;
-        *g = 255u8;
+        *g = 0u8;
         *b = 255u8;
         *a = 255u8;
     }
