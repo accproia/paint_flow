@@ -1,13 +1,18 @@
 extern crate num_traits;
+use std::mem;
 use num_traits::bounds::Bounded;
 
 pub trait Color<T> where T:Clone {
-    const COMPONENTS_NUMBER: usize;
     fn size(&self) -> usize;
     fn get(&self, num: usize) -> T; 
 }
 
-#[derive(Clone)]
+pub trait BaseColor {
+    const COMPONENTS_NUMBER: usize;
+    const COMPONENT_BITS_NUMBER: usize;
+}
+
+#[derive(Clone, PartialEq, Debug)]
 pub struct RgbaColor<T> {
     color: [T; 4],
 }
@@ -23,8 +28,12 @@ impl<T> RgbaColor<T> where T:Bounded{
     }
 }
 
-impl<T> Color<T> for RgbaColor<T> where T:Clone {
+impl<T> BaseColor for RgbaColor<T> where T:Clone {
     const COMPONENTS_NUMBER: usize = 4usize;
+    const COMPONENT_BITS_NUMBER: usize = mem::size_of::<T>() * 8;
+}
+
+impl<T> Color<T> for RgbaColor<T> where T:Clone {
     fn size(&self) -> usize {
         self.color.len()
     }
