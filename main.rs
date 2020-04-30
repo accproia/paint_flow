@@ -4,6 +4,7 @@ extern crate bit_vec;
 
 mod utils;
 mod graphics;
+mod io;
 
 use graphics::image::{*};
 use graphics::color::{*};
@@ -34,6 +35,7 @@ const IMAGE_HEIGHT: usize = 100;
 
 fn main() {
     let img = Image::<RgbaColor<i8>>::from_size(IMAGE_WIDTH, IMAGE_HEIGHT, RgbaColor::<i8>::white());
+
     
     // let out = std::fs::File::create("1.png").expect("Couldn't open the file");
     // let mut encoder = png::Encoder::new(out, IMAGE_WIDTH, IMAGE_HEIGHT);
